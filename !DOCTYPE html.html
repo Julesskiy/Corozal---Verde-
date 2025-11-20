@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Corozal Verde e Inclusivo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --verde: #1b7f5b;
+      --verde-claro: #e0f4ec;
+      --azul: #1c3d5a;
+      --gris-claro: #f4f6f8;
+      --gris-texto: #4a4a4a;
+      --blanco: #ffffff;
+      --sombra: 0 10px 25px rgba(0,0,0,0.08);
+      --radio: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--gris-claro);
+      color: var(--gris-texto);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER / NAV */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 20% 20%, #8fe3b8, #1b7f5b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blanco);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-text span:first-child {
+      font-weight: 700;
+      color: var(--azul);
+      font-size: 1rem;
+    }
+
+    .logo-text span:last-child {
+      font-size: 0.75rem;
+      color: #7a7a7a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      transition: background 0.2s;
+      color: #555;
+    }
+
+    .nav-links a:hover {
+      background: #edf4f0;
+    }
+
+    .nav-cta {
+      padding: 0.5rem 0.95rem;
+      border-radius: 999px;
+      background: var(--verde);
+      color: var(--blanco) !important;
+      font-size: 0.85rem;
+      box-shadow: 0 6px 18px rgba(27, 127, 91, 0.25);
+    }
+
+    /* LAYOUT GENERAL */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    .seccion-titulo {
+      font-size: 1.4rem;
+      color: var(--azul);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .seccion-subtitulo {
+      font-size: 0.95rem;
+      color: #777;
+      margin-bottom: 1.3rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #e6f5ec;
+      color: #2f7c57;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      margin-bottom: 0.3rem;
+    }
+
+    .pill span.icon {
+      font-size: 0.9rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .tarjeta {
+      background: var(--blanco);
+      border-radius: var(--radio);
+      padding: 1.2rem 1.3rem;
+      box-shadow: var(--sombra);
+    }
+
+    .tarjeta h3 {
+      font-size: 1rem;
+      color: var(--azul);
+      margin-bottom: 0.6rem;
+    }
+
+    .tarjeta small {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #999;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      background: #eef3f6;
+      color: #5b6a7b;
+      margin-right: 0.3rem;
+      margin-top: 0.25rem;
+    }
+
+    .tag.verde {
+      background: #e0f4ec;
+      color: #256d4a;
+    }
+
+    .tag.alerta {
+      background: #ffe9e5;
+      color: #b3412c;
+    }
+
+    .boton {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-top: 0.6rem;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+
+    .boton-primario {
+      background: var(--verde);
+      color: var(--blanco);
+      box-shadow: 0 8px 20px rgba(27,127,91,0.25);
+    }
+
+    .boton-secundario {
+      background: var(--blanco);
+      color: var(--azul);
+      border: 1px solid #d3dde5;
+    }
+
+    .boton:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+    }
+
+    .boton span.icon {
+      margin-right: 0.4rem;
+    }
+
+    /* HERO */
+    .hero {
+      margin-top: 1rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .hero-titulo {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      color: var(--azul);
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-titulo strong {
+      color: var(--verde);
+    }
+
+    .hero-desc {
+      font-size: 0.98rem;
+      color: #666;
+      margin-bottom: 1rem;
+      max-width: 35rem;
+    }
+
+    .hero-frase {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: #4a7b63;
+      background: #e5f4ec;
+      padding: 0.6rem 0.8rem;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-frase span.icon {
+      font-size: 1.1rem;
+    }
+
+    .hero-acciones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-metricas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.3rem;
+      font-size: 0.85rem;
+    }
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .metric strong {
+      font-size: 1.05rem;
+      color: var(--azul);
+    }
+
+    .hero-mapa-dummy {
+      background: linear-gradient(135deg, #ccebdc, #f3faf5);
+      border-radius: 24px;
+      padding: 1.2rem;
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--sombra);
+    }
+
+    .hero-mapa-dummy h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      color: var(--azul);
+    }
+
+    .hero-mapa-dummy p {
+      font-size: 0.8rem;
+      color: #4b6b5b;
+      margin-bottom: 0.7rem;
+    }
+
+    .heatmap {
+      border-radius: 18px;
+      border: 1px dashed rgba(0,0,0,0.12);
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.4),
+        rgba(255,255,255,0.4) 6px,
+        rgba(230,244,236,0.7) 6px,
+        rgba(230,244,236,0.7) 12px
+      );
+      padding: 0.6rem;
+      font-size: 0.75rem;
+      color: #3a5b4b;
+      margin-bottom: 0.7rem;
+    }
+
+    .legend {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      font-size: 0.7rem;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #ffb347;
+    }
+
+    .dot.alta {
+      background: #e74c3c;
+    }
+
+    .dot.media {
+      background: #f1c40f;
+    }
+
+    .dot.baja {
+      background: #2ecc71;
+    }
+
+    /* ASISTENTE IA */
+    .chat-box {
+      border-radius: 18px;
+      border: 1px solid #e0e7ef;
+      padding: 0.9rem;
+      background: #f7fafc;
+      font-size: 0.82rem;
+    }
+
+    .chat-msg {
+      margin-bottom: 0.6rem;
+      padding: 0.5rem 0.7rem;
+      border-radius: 12px;
+      max-width: 100%;
+    }
+
+    .chat-msg.user {
+      background: #e0f4ec;
+      align-self: flex-end;
+    }
+
+    .chat-msg.ia {
+      background: #ffffff;
+      border: 1px solid #e1e8f0;
+    }
+
+    .chat-msg strong {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #7a8baa;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .chat-input {
+      margin-top: 0.4rem;
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 0.45rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #ccd6e3;
+      font-size: 0.8rem;
+      outline: none;
+    }
+
+    .chat-input button {
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--verde);
+      color: var(--blanco);
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    /* LISTAS */
+    ul {
+      padding-left: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    li {
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #101820;
+      color: #cbd5e1;
+      margin-top: 2rem;
+      padding: 1.6rem 1.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      font-size: 0.8rem;
+    }
+
+    .footer-inner h4 {
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      color: #e2e8f0;
+    }
+
+    .footer-inner p {
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
+
+    .footer-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.4rem;
+    }
+
+    .footer-tag {
+      border-radius: 999px;
+      border: 1px solid #1f2933;
+      padding: 0.25rem 0.55rem;
+      color: #cbd5e1;
+      font-size: 0.72rem;
+    }
+
+    .copy {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: #64748b;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 800px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      main {
+        padding: 1.1rem;
+      }
+
+      .hero-mapa-dummy {
+        min-height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header>
+    <nav class="nav">
+      <div class="logo">
+        <div class="logo-icon">CV</div>
+        <div class="logo-text">
+          <span>Corozal Verde</span>
+          <span>Planificación urbana inclusiva</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#mapa">Mapa ambiental</a>
+        <a href="#ia">Asistente IA</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#educacion">Educación</a>
+        <a href="#participacion">Participación</a>
+        <a href="#alertas" class="nav-cta">Ver alertas</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO / INICIO -->
+    <section id="inicio" class="hero">
+      <div class="grid-2">
+        <div>
+          <div class="pill"><span class="icon">🌿</span>Corozal, Sucre · IA Generativa</div>
+          <h1 class="hero-titulo">
+            Planificación <strong>verde e inclusiva</strong> basada en datos reales.
+          </h1>
+          <p class="hero-desc">
+            Plataforma web para monitorear el ambiente urbano de Corozal, integrar a la comunidad y usar
+            IA generativa para apoyar decisiones sostenibles en la microcuenca del Arroyo Grande y sus barrios
+            más vulnerables.
+          </p>
+          <div class="hero-frase">
+            <span class="icon">💬</span>
+            “La información ambiental también es un derecho”.
+          </div>
+          <div class="hero-acciones">
+            <button class="boton boton-primario">
+              <span class="icon">📍</span> Ver estado del Arroyo Grande
+            </button>
+            <button class="boton boton-secundario">
+              <span class="icon">🗺️</span> Explorar mapa ambiental
+            </button>
+          </div>
+          <div class="hero-metricas">
+            <div class="metric">
+              <strong>+20</strong>
+              <span>Barrios mapeados con datos ambientales y sociales.</span>
+            </div>
+            <div class="metric">
+              <strong>24/7</strong>
+              <span>Monitoreo continuo con sensores y predicciones de IA.</span>
+            </div>
+            <div class="metric">
+              <strong>Comunidad</strong>
+              <span>Reportes ciudadanos para priorizar intervenciones reales.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-mapa-dummy">
+          <h3>Visor rápido del riesgo urbano en Corozal</h3>
+          <p>
+            Visualización simplificada de la microcuenca del Arroyo Grande, con zonas críticas
+            marcadas según densidad poblacional, contaminación y vulnerabilidad.
+          </p>
+          <div class="heatmap">
+            <strong>Mapa de calor (vista conceptual)</strong>
+            <p>• Rojo: alta exposición a riesgos e inundaciones.<br>
+               • Amarillo: riesgo medio y presión urbana constante.<br>
+               • Verde: zonas más estables con menor impacto inmediato.</p>
+          </div>
+          <div class="legend">
+            <div class="legend-item">
+              <span class="dot alta"></span><span>Riesgo alto</span>
+            </div>
+            <div class="legend-item">
+              <span class="dot media"></span><span>Riesgo medio</span>
+            </div>
+            <div class="legend-item">
+              <span class="dot baja"></span><span>Riesgo bajo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAPA AMBIENTAL -->
+    <section id="mapa">
+      <h2 class="seccion-titulo">Mapa ambiental interactivo de Corozal</h2>
+      <p class="seccion-subtitulo">
+        Un panel visual que integra información demográfica, ambiental, de infraestructura urbana y movilidad,
+        para entender cómo se distribuye la presión ambiental en el municipio.
+      </p>
+      <div class="grid-2">
+        <div class="tarjeta">
+          <small>Capas de información</small>
+          <h3>Datos que se muestran en el mapa</h3>
+          <ul>
+            <li>Zonas con mayor densidad poblacional y presión urbana constante.</li>
+            <li>Calidad del agua en distintos tramos del Arroyo Grande.</li>
+            <li>Calles con problemas de movilidad, inundaciones o deterioro.</li>
+            <li>Sectores vulnerables con menor acceso a infraestructura y servicios.</li>
+            <li>Áreas con acumulación de residuos y riesgo sanitario.</li>
+          </ul>
+          <div>
+            <span class="tag">Densidad poblacional</span>
+            <span class="tag">Calidad del agua</span>
+            <span class="tag">Movilidad urbana</span>
+            <span class="tag verde">Zonas verdes</span>
+          </div>
+          <button class="boton boton-secundario">
+            <span class="icon">🔍</span> Simular recorrido por el mapa
+          </button>
+        </div>
+        <div class="tarjeta">
+          <small>Análisis con IA</small>
+          <h3>¿Qué hace la IA generativa en el mapa?</h3>
+          <ul>
+            <li>Detecta patrones de contaminación en sectores específicos.</li>
+            <li>Relaciona densidad poblacional con exposición a riesgos ambientales.</li>
+            <li>Genera resúmenes automáticos para que la información sea más fácil de entender.</li>
+            <li>Propone escenarios de planificación urbana más equilibrados y resilientes.</li>
+          </ul>
+          <p style="font-size:0.85rem; margin-top:0.4rem;">
+            Ejemplo de salida de IA: <em>“Los barrios X y Y concentran alta densidad poblacional
+            y baja cobertura de zonas verdes. Se recomienda priorizar intervenciones de arborización
+            y mejora de espacio público.”</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ASISTENTE IA -->
+    <section id="ia">
+      <h2 class="seccion-titulo">Asistente Verde · IA generativa para la ciudad</h2>
+      <p class="seccion-subtitulo">
+        Un asistente digital pensado para que cualquier habitante, estudiante o funcionario pueda hacer
+        preguntas sobre el estado ambiental de Corozal y recibir respuestas claras basadas en datos.
+      </p>
+      <div class="grid-2">
+        <div class="tarjeta">
+          <small>Ejemplo de interacción</small>
+          <h3>Conversación simulada con el asistente</h3>
+          <div class="chat-box">
+            <div class="chat-msg user">
+              <strong>Ciudadanía</strong>
+              Vivo cerca del arroyo y últimamente el olor es muy fuerte. ¿Qué significa esto
+              y qué puedo hacer?
+            </div>
+            <div class="chat-msg ia">
+              <strong>Asistente IA</strong>
+              El aumento de malos olores puede estar asociado a acumulación de residuos y
+              menor calidad del agua en tu zona. Según los datos recientes, tu barrio tiene
+              registro de vertimientos constantes. Te recomiendo:
+              <ul style="margin-top:0.3rem;">
+                <li>Evitar el contacto directo con el agua del arroyo.</li>
+                <li>Reportar puntos de basura visibles en la sección de participación ciudadana.</li>
+                <li>Seguir las alertas de salud pública publicadas en la plataforma.</li>
+              </ul>
+            </div>
+            <div class="chat-msg user">
+              <strong>Ciudadanía</strong>
+              ¿El municipio está haciendo algo para mejorar esta situación?
+            </div>
+            <div class="chat-msg ia">
+              <strong>Asistente IA</strong>
+              Actualmente hay proyectos activos de canalización y tratamiento de aguas
+              residuales en tu zona. Puedes ver el avance en el módulo de “Proyectos Ambientales”.
+            </div>
+            <div class="chat-input">
+              <input type="text" placeholder="Escribe aquí tu pregunta (simulado)..." />
+              <button>Enviar</button>
+            </div>
+          </div>
+        </div>
+        <div class="tarjeta">
+          <small>Funciones principales</small>
+          <h3>¿Cómo ayuda la IA a la planificación verde?</h3>
+          <ul>
+            <li>Resume información técnica en un lenguaje sencillo para la comunidad.</li>
+            <li>Genera reportes automáticos sobre calidad del agua, movilidad y residuos.</li>
+            <li>Predice riesgos ambientales graves en sectores vulnerables.</li>
+            <li>Propone recomendaciones personalizadas según el barrio o la zona.</li>
+            <li>Apoya la educación ambiental urbana con explicaciones y ejemplos.</li>
+          </ul>
+          <button class="boton boton-primario">
+            <span class="icon">🤖</span> Probar el Asistente Verde (prototipo)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS AMBIENTALES -->
+    <section id="proyectos">
+      <h2 class="seccion-titulo">Proyectos ambientales y planificación urbana</h2>
+      <p class="seccion-subtitulo">
+        Transparencia y seguimiento en tiempo real de las obras e intervenciones ecológicas
+        que impactan directamente a la comunidad de Corozal.
+      </p>
+
+      <div class="grid-3">
+        <div class="tarjeta">
+          <small>Proyecto activo</small>
+          <h3>Canalización y saneamiento del Arroyo Grande</h3>
+          <p style="font-size:0.9rem; margin-bottom:0.4rem;">
+            Mejorar la infraestructura para reducir inundaciones, controlar vertimientos y
+            recuperar la calidad del agua en la microcuenca.
+          </p>
+          <p style="font-size:0.85rem;"><strong>Avance estimado:</strong> 40%</p>
+          <div class="tag verde">Infraestructura verde</div>
+          <div class="tag">Gestión hídrica</div>
+        </div>
+
+        <div class="tarjeta">
+          <small>Proyecto propuesto</small>
+          <h3>Red de sensores urbanos en zonas vulnerables</h3>
+          <p style="font-size:0.9rem; margin-bottom:0.4rem;">
+            Instalación de sensores para monitorear calidad del agua, lluvia, temperatura y
+            acumulación de residuos en tiempo real.
+          </p>
+          <p style="font-size:0.85rem;"><strong>Objetivo:</strong> obtener datos precisos para prevenir riesgos y priorizar intervenciones.</p>
+          <div class="tag">Tecnología ambiental</div>
+          <div class="tag verde">Datos en tiempo real</div>
+        </div>
+
+        <div class="tarjeta">
+          <small>Proyecto comunitario</small>
+          <h3>Corozal Siembra Futuro</h3>
+          <p style="font-size:0.9rem; margin-bottom:0.4rem;">
+            Jornada de arborización y recuperación de espacio público en barrios con
+            baja cobertura de zonas verdes.
+          </p>
+          <p style="font-size:0.85rem;"><strong>Impacto esperado:</strong> reducir islas de calor, mejorar aire y fortalecer la identidad barrial.</p>
+          <div class="tag verde">Participación ciudadana</div>
+          <div class="tag">Zonas verdes</div>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem;">
+        <button class="boton boton-secundario">
+          <span class="icon">➕</span> Proponer una idea verde para tu barrio
+        </button>
+      </div>
+    </section>
+
+    <!-- ALERTAS -->
+    <section id="alertas">
+      <h2 class="seccion-titulo">Sistema de alertas tempranas</h2>
+      <p class="seccion-subtitulo">
+        Predicciones y notificaciones para proteger a las familias de Corozal frente a riesgos
+        ambientales graves y eventos climáticos intensos.
+      </p>
+
+      <div class="grid-3">
+        <div class="tarjeta">
+          <small>Alerta simulada</small>
+          <h3>Lluvias intensas en la cuenca alta</h3>
+          <p style="font-size:0.9rem;">
+            La IA detecta un incremento en el nivel de riesgo de inundación en los barrios
+            cercanos al arroyo durante las próximas 24 horas.
+          </p>
+          <div class="tag alerta">Riesgo alto</div>
+          <div class="tag">Inundaciones</div>
+        </div>
+        <div class="tarjeta">
+          <small>Canales de aviso</small>
+          <h3>¿Cómo se envían las alertas?</h3>
+          <ul>
+            <li>Notificaciones en la plataforma web.</li>
+            <li>Mensajes SMS a usuarios registrados.</li>
+            <li>Correos electrónicos a líderes comunitarios y entidades.</li>
+          </ul>
+        </div>
+        <div class="tarjeta">
+          <small>Recomendaciones generales</small>
+          <h3>¿Qué hacer ante una alerta ambiental?</h3>
+          <ul>
+            <li>Evitar desplazarse por zonas inundables.</li>
+            <li>No arrojar basura al arroyo ni a las calles.</li>
+            <li>Seguir las indicaciones del comité local de gestión del riesgo.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCACION -->
+    <section id="educacion">
+      <h2 class="seccion-titulo">Educación ambiental urbana</h2>
+      <p class="seccion-subtitulo">
+        Cambiar la cultura ciudadana es parte de la solución. La plataforma incluye recursos
+        educativos para colegios, familias y comunidad en general.
+      </p>
+
+      <div class="grid-2">
+        <div class="tarjeta">
+          <small>Recursos</small>
+          <h3>Material educativo disponible</h3>
+          <ul>
+            <li>Infografías sobre el ciclo del agua y la importancia del arroyo.</li>
+            <li>Guías rápidas para separar residuos en casa.</li>
+            <li>Videos cortos sobre cambio climático y ciudad.</li>
+            <li>Actividades para colegios sobre planificación urbana y sostenibilidad.</li>
+          </ul>
+          <div class="tag verde">Escuelas</div>
+          <div class="tag">Familias</div>
+          <div class="tag">Líderes barriales</div>
+        </div>
+        <div class="tarjeta">
+          <small>Frase clave</small>
+          <h3>“Pequeñas acciones, grandes cambios”</h3>
+          <p style="font-size:0.9rem;">
+            La idea es que cada persona en Corozal entienda que su acción individual sí suma:
+            no arrojar residuos al arroyo, respetar las zonas verdes y participar en procesos
+            comunitarios puede transformar el futuro de la ciudad.
+          </p>
+          <button class="boton boton-secundario">
+            <span class="icon">📚</span> Ver módulo educativo (prototipo)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTICIPACION -->
+    <section id="participacion">
+      <h2 class="seccion-titulo">Participación ciudadana</h2>
+      <p class="seccion-subtitulo">
+        La planificación verde e inclusiva solo es posible si la comunidad participa. Este módulo
+        permite reportar problemas, opinar y priorizar intervenciones.
+      </p>
+
+      <div class="grid-2">
+        <div class="tarjeta">
+          <small>Formulario simple</small>
+          <h3>Reporta un problema ambiental en tu barrio</h3>
+          <form style="font-size:0.85rem;">
+            <label>Barrio o sector:</label><br>
+            <input type="text" style="width:100%; margin:0.25rem 0 0.6rem; padding:0.4rem; border-radius:10px; border:1px solid #d1d9e3;" placeholder="Ej. Cerca del Arroyo Grande, barrio X" />
+            <label>Tipo de problema:</label><br>
+            <select style="width:100%; margin:0.25rem 0 0.6rem; padding:0.4rem; border-radius:10px; border:1px solid #d1d9e3;">
+              <option>Escoja una opción</option>
+              <option>Basura o residuos</option>
+              <option>Agua contaminada</option>
+              <option>Riesgo de inundación</option>
+              <option>Falla en infraestructura</option>
+              <option>Otro</option>
+            </select>
+            <label>Descripción del problema:</label><br>
+            <textarea rows="4" style="width:100%; margin:0.25rem 0 0.6rem; padding:0.4rem; border-radius:10px; border:1px solid #d1d9e3;" placeholder="Describe qué ocurre, desde cuándo y cómo afecta a la comunidad."></textarea>
+            <button class="boton boton-primario" type="button">
+              <span class="icon">📤</span> Enviar reporte (simulado)
+            </button>
+          </form>
+        </div>
+        <div class="tarjeta">
+          <small>Prioridades ciudadanas</small>
+          <h3>¿Cómo se usan estos reportes?</h3>
+          <ul>
+            <li>La IA agrupa los reportes por tipo de problema y barrio.</li>
+            <li>Se crea un “Mapa de Prioridades Ciudadanas” visible en el panel público.</li>
+            <li>Las autoridades pueden ver qué zonas requieren atención urgente.</li>
+            <li>La comunidad puede hacer seguimiento a los problemas reportados.</li>
+          </ul>
+          <p style="font-size:0.85rem; margin-top:0.4rem;">
+            Esto ayuda a que la planificación sea más justa y que las inversiones públicas
+            se alineen con las necesidades reales de la población.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h4>Corozal Verde e Inclusivo</h4>
+        <p>
+          Prototipo de plataforma web para la planificación urbana verde e inclusiva de Corozal, Sucre,
+          apoyada en IA generativa, datos ambientales y participación ciudadana.
+        </p>
+        <div class="footer-tags">
+          <div class="footer-tag">Arroyo Grande</div>
+          <div class="footer-tag">Microcuenca</div>
+          <div class="footer-tag">IA generativa</div>
+          <div class="footer-tag">Datos ambientales</div>
+          <div class="footer-tag">Planificación urbana</div>
+        </div>
+      </div>
+      <div>
+        <h4>Frase de cierre</h4>
+        <p>
+          “Una ciudad más justa y sostenible comienza cuando sabemos qué está pasando
+          en cada barrio y usamos esa información para cuidar la vida de todos.”
+        </p>
+      </div>
+    </div>
+    <div class="copy">
+      Prototipo académico · Diseño conceptual basado en la metodología Design Thinking.
+    </div>
+  </footer>
+</body>
+</html>
